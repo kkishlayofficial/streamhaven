@@ -1,4 +1,4 @@
-# Netflix GPT
+# StreamHaven
 
 - Create React App
 - Tailwind Configuration
