@@ -1,0 +1,53 @@
+.slide {
+  margin: auto;
+}
+
+.listItem {
+  padding: 20px;
+  background: #2d2f31;
+  color: white;
+  font-size: 1.2em;
+  font-variant: small-caps;
+  cursor: pointer;
+  display: block;
+}
+
+.slide {
+  max-height: 250px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  background-color: rgb(118, 111, 111);
+}
+
+.listItem::after {
+  float: right;
+  right: 10%;
+  content: "+";
+}
+
+.episodeDetails{
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+}
+
+.slide {
+  clear: both;
+  width: 100%;
+  text-align: center;
+  transition: height 0.4s ease;
+}
+
+.slide li {
+  padding: 30px;
+}
+
+#touch {
+  position: absolute;
+  opacity: 0;
+  height: 0px;
+}
+
+#touch:checked + .slide {
+  height: max-content;
+}
