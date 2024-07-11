@@ -4,8 +4,6 @@ export const NETFLIX_LOGO =
 export const USER_AVATAR =
   "https://occ-0-6245-2164.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABZ3fwg6oVNnYgmbv1d1MTUy3mKtfmTfds2ALI3JDVrbnkVBI3PvqU9kqgAkpnbzyru8p5JErnyTaEA2ZxmRFEMTIc70ci70.png?r=5a3";
 
-export const OPENAI_KEY = 'sk-proj-w69Kgnt1Z8wxIeku3Hh7T3BlbkFJB6j5nOaor1Q68ZprxpAR'
-
 export const API_OPTIONS = {
   method: "GET",
   headers: {
