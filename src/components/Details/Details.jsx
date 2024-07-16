@@ -73,23 +73,23 @@ const Details = () => {
         <div
           ref={contentRef}
           className='dialog__content text-white w-full p-[1em] md:p-0 md:w-[95%] xl:p-0 rounded-lg h-[99vh] md:h-[75vh] lg:max-h-[90vh]'
+          style={{
+            backgroundImage: `url(${BACKDROP_URL + detail?.backdrop_path})`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            boxShadow: 'inset 0 0 0 2000px rgba(0, 0, 0, 0.8)'
+          }}
         >
           <button
             className='flex close glass-button'
             onClick={handleClose}
           ></button>
           <div
-            style={{
-              backgroundImage: `url(${BACKDROP_URL + detail?.backdrop_path})`,
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-            }}
-            className='lg:h-[55vh] xl:h-[55vh] rounded-lg'
+            className='rounded-lg'
           >
             <div
               className='h-full rounded-lg'
-              style={{ background: "#131111c6" }}
             >
               <div className='movieDetail flex flex-col items-center md:flex-row xl:px-20 rounded-lg py-3 px-12 '>
                 <div className='poster mx-4 my-2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/5 2xl:w-1/6'>
@@ -117,7 +117,7 @@ const Details = () => {
                   </div>
 
                   <div className='genre text-sm py-3'>
-                    {detail?.genres?.map((genre) => genre.name).join(", ")}
+                    {detail?.genres?.map((genre) => genre.name).join(" | ")}
                   </div>
                   <div className='overview text-[10px] xl:text-xs mb-3'>
                     {detail?.overview}
@@ -145,7 +145,7 @@ const Details = () => {
 
             {contentRecommendation && (
               <div>
-                <div ref={similarRef}>
+                <div className="mt-4" ref={similarRef}>
                   <MovieList
                     title={"Similar To This"}
                     movies={contentRecommendation}

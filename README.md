@@ -35,6 +35,12 @@
 - Added search to show movies and shows
 - Added video player to play movies and shows
 
+# Todo 
+- Add Event Delegation for cards.
+- Add View All pages for different category
+- Add Infinite Scrolling
+- Add Anime from https://anilist.gitbook.io/anilist-apiv2-docs
+
 # Features
 - Login/ Sign up
   -Sign In/ Sign Up Form
