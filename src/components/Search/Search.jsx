@@ -19,8 +19,6 @@ const Search = () => {
   const [hasMore, setHasMore] = useState(true);
   const searchBarTimeoutId = useRef(null);
 
-  console.log(currentPage);
-
   useEffect(() => {
     if (searchData.keywords.length < 1) {
       clearTimeout(searchBarTimeoutId.current);
@@ -106,7 +104,7 @@ const Search = () => {
     <div className='relative'>
       <Header />
       <div className=''>
-        <div className='pt-[90px] px-4 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8 2xl:grid-cols-10 m-0 w-full'>
+        <div className='pt-[140px] px-4 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8 2xl:grid-cols-10 m-0 w-full'>
           {searchData?.dataList
             ?.filter(
               (item) => item.media_type === "tv" || item.media_type === "movie"

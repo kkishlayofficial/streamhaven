@@ -7,7 +7,6 @@ const VideoPlayer = ({ type, videoId }) => {
   const dispatch = useDispatch();
   const [showErrorScreen, setShowErrorScreen] = useState(false);
   const [player, setPlayer] = useState("");
-
   const playersArr = [
     `https://vidsrc.me/embed/${type}/${videoId}`,
     `https://vidsrc.pro/embed/${type}/${videoId}`,
@@ -15,6 +14,7 @@ const VideoPlayer = ({ type, videoId }) => {
     `https://vidsrc.to/embed/${type}/${videoId}`,
     `https://vidsrc.pm/embed/${type}/${videoId}`,
     `https://vidsrc.xyz/embed/${type}/${videoId}`,
+    // `https://multiembed.mov/directstream.php?video_id=` Superembed
   ];
 
   const fetchPlayer = async () => {

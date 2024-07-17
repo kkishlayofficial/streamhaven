@@ -104,7 +104,7 @@ const PageContent = ({ pageType }) => {
     <div className='relative'>
       <Header />
       <div>
-        <div className='pt-[90px]'>
+        <div className='pt-[140px]'>
           <div className='genre px-2 pb-4'>
             <FormControl sx={{ m: 1, minWidth: 200 }}>
               <Select
