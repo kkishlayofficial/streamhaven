@@ -14,6 +14,7 @@ export const API_OPTIONS = {
 };
 
 export const POSTER_PATH = "https://image.tmdb.org/t/p/w300_and_h450_bestv2";
+export const LOGO_PATH = "https://image.tmdb.org/t/p/original";
 export const CARDS_URL = "https://image.tmdb.org/t/p/w150_and_h200_bestv2";
 export const BACKDROP_URL =
   "https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces/";

@@ -6,16 +6,22 @@ import {
   removeEpisodeDetails,
 } from "../../utils/detailsSlice";
 import "./Details.css";
-import { API_OPTIONS, BACKDROP_URL, POSTER_PATH } from "../../utils/constants";
+import {
+  API_OPTIONS,
+  BACKDROP_URL,
+  LOGO_PATH,
+  POSTER_PATH,
+} from "../../utils/constants";
 import MovieList from "../MovieList";
 import { addVideoToStream } from "../../utils/videoSlice";
 import useDetailForPopup from "../../hooks/useDetailForPopUp";
 import ShowList from "../ShowList/ShowList";
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 const Details = () => {
   const [contentRecommendation, setContentRecommendation] = useState(null);
   const [videoToPlay, setVideoToPlay] = useState(null);
+  const [imageArr, setImageArr] = useState([]);
 
   const contentRef = useRef(null);
   const similarRef = useRef(null);
@@ -26,6 +32,19 @@ const Details = () => {
   const dispatch = useDispatch();
 
   useDetailForPopup(type, detail, setContentRecommendation);
+
+  const renderImages = async () => {
+    try {
+      const data = await fetch(
+        `https://api.themoviedb.org/3/${type}/${detail?.id}/images`,
+        API_OPTIONS
+      );
+      const response = await data.json();
+      setImageArr(response.logos.filter((item) => item.iso_639_1 === "en"));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleClose = () => {
     dispatch(removeDetail());
@@ -60,6 +79,8 @@ const Details = () => {
 
   useEffect(() => {
     if (detail) {
+      setImageArr([])
+      renderImages();
       getEpisodeDetails(detail);
       type === "movie" && setVideoToPlay({ type, videoId: `${detail.id}` });
     }
@@ -78,19 +99,15 @@ const Details = () => {
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
-            boxShadow: 'inset 0 0 0 2000px rgba(0, 0, 0, 0.8)'
+            boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.8)",
           }}
         >
           <button
             className='flex close glass-button'
             onClick={handleClose}
           ></button>
-          <div
-            className='rounded-lg'
-          >
-            <div
-              className='h-full rounded-lg'
-            >
+          <div className='rounded-lg'>
+            <div className='h-full rounded-lg'>
               <div className='movieDetail flex flex-col items-center md:flex-row xl:px-20 rounded-lg py-3 px-12 '>
                 <div className='poster mx-4 my-2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/5 2xl:w-1/6'>
                   <img
@@ -104,7 +121,22 @@ const Details = () => {
                 </div>
                 <div className='detail md:w-2/4 sm:text-left px-8 sm:pl-0 sm:pr-6 xl:px-8'>
                   <div className='title text-3xl font-bold'>
-                    {(detail?.name || detail?.title) ?? '' } 
+                    {imageArr.length > 0 ? (
+                      <img
+                        className='rounded-lg my-3'
+                        src={
+                          "https://wsrv.nl/?url=" +
+                          LOGO_PATH +
+                          imageArr[0]?.file_path +
+                          "&w=200&q=65&output=webp"
+                        }
+                        alt='logo'
+                      />
+                    ) : (
+                      <div className='title text-3xl font-bold'>
+                        {(detail?.name || detail?.title) ?? ""}
+                      </div>
+                    )}
                   </div>
                   <div className='tagline italic'>{detail?.tagline}</div>
                   <div className='flex justify-center sm:justify-start text-gray-300 font-medium py-1 sm:max-w-68'>
@@ -112,7 +144,9 @@ const Details = () => {
                       {detail?.first_air_date ?? detail?.release_date}
                     </div>
                     <div className='avgRating text-sm'>
-                      {detail?.vote_average ? `${Math.round(detail?.vote_average * 10)}%` : ''}
+                      {detail?.vote_average
+                        ? `${Math.round(detail?.vote_average * 10)}%`
+                        : ""}
                     </div>
                   </div>
 
@@ -122,13 +156,13 @@ const Details = () => {
                   <div className='overview text-[10px] xl:text-xs mb-3'>
                     {detail?.overview}
                   </div>
-                  <div className="flex justify-center sm:justify-start">
-                  <button
-                    className='text-black bg-white text-md sm:text-lg font-bold px-16 py-3 mr-4 rounded-md hover:opacity-80  flex justify-center items-center'
-                    onClick={handlePlay}
-                  >
-                    <PlayArrowIcon/> Play
-                  </button>
+                  <div className='flex justify-center sm:justify-start'>
+                    <button
+                      className='text-black bg-white text-md sm:text-lg font-bold px-16 py-3 mr-4 rounded-md hover:opacity-80  flex justify-center items-center'
+                      onClick={handlePlay}
+                    >
+                      <PlayArrowIcon /> Play
+                    </button>
                   </div>
                 </div>
               </div>
@@ -145,7 +179,7 @@ const Details = () => {
 
             {contentRecommendation && (
               <div>
-                <div className="mt-4" ref={similarRef}>
+                <div className='mt-4' ref={similarRef}>
                   <MovieList
                     title={"Similar To This"}
                     movies={contentRecommendation}
