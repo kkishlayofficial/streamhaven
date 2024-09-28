@@ -6,6 +6,7 @@ import MoviePage from "./MoviePage/MoviePage";
 import TvPage from "./TvPage/TvPage";
 import Error from "./Error/Error";
 import Login from "./Login/Login";
+import MyList from "./MyList/MyList";
 
 const Body = () => { 
 
@@ -33,6 +34,11 @@ const Body = () => {
     {
       path: '/tv',
       element: <TvPage />,
+      errorElement: <Error />,
+    },
+    {
+      path: '/my-list',
+      element: <MyList />,
       errorElement: <Error />,
     }
   ]);

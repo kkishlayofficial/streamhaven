@@ -54,9 +54,9 @@ const Browse = () => {
 width="100%" height="600px" frameborder="0" > </iframe>
       </div> */}
 
-        <div className='absolute z-20'>
+        {details.detail && <div className='absolute z-20'>
           <Details />
-        </div>
+        </div>}
       </div>
       <div>
         {type && videoId && <VideoPlayer type={type} videoId={videoId} />}

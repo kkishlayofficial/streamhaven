@@ -106,7 +106,7 @@ const Login = () => {
       <Header />
 
       <form className='relative bg-black p-6 mx-auto left-0 right-0 text-white bg-opacity-80 max-w-[350px] rounded-lg'>
-        <button class='signin' onClick={handleGoogleAuth}>
+        <button className='signin' onClick={handleGoogleAuth}>
           <svg
             viewBox='0 0 256 262'
             preserveAspectRatio='xMidYMid'

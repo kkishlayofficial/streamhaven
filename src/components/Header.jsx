@@ -17,7 +17,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
-import StreamHaven from '../images/StreamHaven.png'
+import StreamHaven from "../images/StreamHaven.webp";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -90,6 +90,13 @@ const Header = () => {
     }
   };
 
+  const handleMyListClick = () => {
+    if (location.pathname !== "my-list") {
+      dispatch(setGenre("all"));
+      navigate("/my-list");
+    }
+  };
+
   const list = (anchor) => (
     <Box
       sx={{ width: 250 }}
@@ -100,7 +107,12 @@ const Header = () => {
       <List sx={{ background: "#000000ee", color: "white", display: "flex" }}>
         <ListItem disablePadding sx={{ display: "block" }}>
           <ListItemButton sx={{ display: "flex", alignItems: "end" }}>
-            <img alt={user?.displayName} src={user?.photoURL} height={30} width={30}/>
+            <img
+              alt={user?.displayName}
+              src={user?.photoURL}
+              height={30}
+              width={30}
+            />
             <p className='pl-2 text-white'>{user?.displayName}</p>
           </ListItemButton>
         </ListItem>
@@ -116,6 +128,9 @@ const Header = () => {
             </ListItemButton>
           </ListItem>
         ))}
+        <ListItemButton onClick={handleMyListClick}>
+          <ListItemText primary={"MY LIST"} />
+        </ListItemButton>
       </List>
       <Divider sx={{ background: "#fff" }} />
       <List sx={{ background: "#000000ee", color: "white", display: "flex" }}>
@@ -136,51 +151,59 @@ const Header = () => {
   return (
     <div className='absolute top-0 pl-1 pr-2 py-2 bg-gradient-to-b flex items-center justify-between from-black w-full z-20'>
       <div className='flex items-center'>
-        {user && <div
-          className='flex lg:hidden'
-          style={{ width: "35px", height: "35px" }}
-        >
-          <Button
-            sx={{
-              justifyContent: "start",
-              padding: "0",
-              ".MuiSvgIcon-root": {
-                fill: "#ffffffa7",
-              },
-            }}
-            onClick={toggleDrawer("left", true)}
+        {user && (
+          <div
+            className='flex lg:hidden'
+            style={{ width: "35px", height: "35px" }}
           >
-            <MenuRoundedIcon fontSize='large' />
-          </Button>
-          <Drawer
-            sx={{
-              background: "#0000001b",
-              "& .MuiPaper-root": { background: "#000" },
-            }}
-            anchor={"left"}
-            open={state}
-            onClose={toggleDrawer("left", false)}
-          >
-            {list("left")}
-          </Drawer>
-        </div>}
+            <Button
+              sx={{
+                justifyContent: "start",
+                padding: "0",
+                ".MuiSvgIcon-root": {
+                  fill: "#ffffffa7",
+                },
+              }}
+              onClick={toggleDrawer("left", true)}
+              aria-label="Menu Button"
+            >
+              <MenuRoundedIcon fontSize='large' />
+            </Button>
+            <Drawer
+              sx={{
+                background: "#0000001b",
+                "& .MuiPaper-root": { background: "#000" },
+              }}
+              anchor={"left"}
+              open={state}
+              onClose={toggleDrawer("left", false)}
+            >
+              {list("left")}
+            </Drawer>
+          </div>
+        )}
         <img
           src={StreamHaven}
-          alt='StreamHaven'
-          className='logo h-[100px] w-[135px] sm:h-[125px] sm:w-[200px]'
+          alt='StreamHaven Logo - Watch movies and shows for free'
+          className='logo h-[100px] w-[125px]'
           onClick={handleLogoClick}
           style={{ cursor: "pointer" }}
-          height={150} width={150}
-
+          height={100}
+          width={125}
         />
-        { user && <ul className='hidden lg:flex items-center w-full text-white font-bold ml-4'>
-          <li className='pr-4 cursor-pointer' onClick={handleMovieClick}>
-            MOVIES
-          </li>
-          <li className='cursor-pointer' onClick={handleTvClick}>
-            TV SHOWS
-          </li>
-        </ul>}
+        {user && (
+          <ul className='hidden lg:flex items-center w-full text-white font-bold ml-4'>
+            <li className='pr-4 cursor-pointer' onClick={handleMovieClick}>
+              MOVIES
+            </li>
+            <li className='pr-4 cursor-pointer' onClick={handleTvClick}>
+              TV SHOWS
+            </li>
+            <li className='cursor-pointer' onClick={handleMyListClick}>
+              MY LIST
+            </li>
+          </ul>
+        )}
       </div>
       {user && (
         <div className='flex justify-between items-center'>
@@ -193,7 +216,17 @@ const Header = () => {
                 className='flex items-center'
                 style={{ borderRight: "2px solid #ffffff71" }}
               >
-                <img alt={user?.displayName} src={user?.photoURL} height={30} width={30} />
+                <img
+                  alt={user?.displayName}
+                  src={
+                    "https://wsrv.nl/?url=" +
+                    user?.photoURL +
+                    "&w=30&h=30&output=webp"
+                  }
+                  height={30}
+                  width={30}
+                  className='w-[30px] h-[30px] object-contain'
+                />
                 <p className='mx-2 text-white'>{user?.displayName}</p>
               </div>
               <button

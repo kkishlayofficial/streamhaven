@@ -50,9 +50,11 @@ const VideoTitle = ({ title, overview, movie }) => {
             "https://wsrv.nl/?url=" +
             LOGO_PATH +
             imageArr[0]?.file_path +
-            "&w=384&q=75&output=webp"
+            "&w=200&h=200&output=webp"
           }
           alt='logo'
+          height={200}
+          width={200}
         />
       ) : (
         <h1 className='hidden md:block text-3xl md:text-3xl lg:text-6xl font-bold text-center md:text-left'>

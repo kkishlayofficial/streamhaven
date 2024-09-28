@@ -36,7 +36,7 @@ const SearchBar = () => {
           value={searchData.keywords}
           ref={inputRef}
         />
-        <button className='z-[3]' onClick={handleClear} type='reset'></button>
+        <button className='z-[3]' onClick={handleClear} aria-label="Close" type='reset'></button>
       </div>
     </div>
   );
