@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import SearchBar from "./SearchBar/SearchBar";
-import { removeMovieFromList, setGenre } from "../utils/allMovieSlice";
+import { removeMovieFromList, setGenre, updatePage } from "../utils/allMovieSlice";
 import {
   Box,
   Button,
@@ -78,6 +78,7 @@ const Header = () => {
 
       navigate("/movies");
       dispatch(removeMovieFromList());
+      dispatch(updatePage(1))
     }
   };
 
@@ -87,6 +88,7 @@ const Header = () => {
 
       navigate("/tv");
       dispatch(removeMovieFromList());
+      dispatch(updatePage(1))
     }
   };
 

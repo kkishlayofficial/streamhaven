@@ -5,6 +5,7 @@ const allMovieSlice = createSlice({
   initialState: {
     genre: null,
     movieList: [],
+    page: 1,
   },
   reducers: {
     addMovieToList: (state, action) => {
@@ -19,9 +20,12 @@ const allMovieSlice = createSlice({
     removeGenre: (state) => {
       state.genre = null;
     },
+    updatePage: (state, action) => {
+      state.page = action.payload
+    }
   },
 });
 
-export const { addMovieToList, removeMovieFromList, setGenre, removeGenre } =
+export const { addMovieToList, removeMovieFromList, setGenre, removeGenre, updatePage } =
   allMovieSlice.actions;
 export default allMovieSlice.reducer;

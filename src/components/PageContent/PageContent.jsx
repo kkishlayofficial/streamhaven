@@ -8,6 +8,7 @@ import {
   addMovieToList,
   removeMovieFromList,
   setGenre,
+  updatePage,
 } from "../../utils/allMovieSlice";
 import MovieCard from "../MovieCard";
 import Details from "../Details/Details";
@@ -20,10 +21,9 @@ const PageContent = ({ pageType }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { type, videoId } = useSelector((state) => state.video);
-  const { genre, movieList } = useSelector((state) => state.allMovies);
+  const { genre, movieList, page } = useSelector((state) => state.allMovies);
   const searchData = useSelector((state) => state.search);
   const details = useSelector((state) => state.details);
-  const [currentPage, setCurrentPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [genreList, setGenreList] = useState([]);
 
@@ -51,14 +51,14 @@ const PageContent = ({ pageType }) => {
   const fetchMovieList = async () => {
     try {
       const data = await fetch(
-        `https://api.themoviedb.org/3/discover/${pageType}?include_adult=true&include_video=false&language=en-US&page=${currentPage}&sort_by=popularity.desc${
+        `https://api.themoviedb.org/3/discover/${pageType}?include_adult=true&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc${
           genre > 0 ? `&with_genres=${genre}` : ""
         } `,
         API_OPTIONS
       );
       const result = await data.json();
-      setHasMore(result.total_pages > currentPage);
-      hasMore && setCurrentPage((prev) => prev + 1);
+      setHasMore(result.total_pages > page);
+      hasMore && dispatch(updatePage(page+1));
       dispatch(
         addMovieToList(
           result.results.sort((a, b) => b.vote_count - a.vote_count)
@@ -82,7 +82,7 @@ const PageContent = ({ pageType }) => {
   useEffect(() => {
     if (movieList.length === 0) {
       if (!isNaN(genre)) {
-        setCurrentPage(1);
+        dispatch(updatePage(1));
         fetchMovieList();
       } else {
         dispatch(setGenre(0));
@@ -96,7 +96,7 @@ const PageContent = ({ pageType }) => {
 
   const handleChange = (event) => {
     dispatch(removeMovieFromList());
-    setCurrentPage(1);
+    dispatch(updatePage(1));
     dispatch(setGenre(event.target.value));
   };
 
