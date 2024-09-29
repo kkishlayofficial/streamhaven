@@ -5,11 +5,21 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="robots" content="index, follow">
-    <link rel="alternate" href="https://streamhaven.netlify.app" hreflang="en">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="robots" content="index, follow" />
+    <link
+      rel="alternate"
+      href="https://streamhaven.netlify.app"
+      hreflang="en"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <link rel="apple-touch-startup-image" href="%PUBLIC_URL%/logo512.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <meta
       name="description"
       content="StreamHaven - Watch the latest movies, popular TV shows, and exclusive content for free. Stream anytime, anywhere with no subscriptions or hidden fees."
@@ -22,30 +32,47 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo512.png" />
     <link rel="mask-icon" href="%PUBLIC_URL%/logo512.png" />
-    <link rel="canonical" href="https://streamhaven.netlify.app/browse">
-    
+    <link rel="canonical" href="https://streamhaven.netlify.app/browse" />
 
-    <link rel="canonical" href="https://streamhaven.netlify.app/browse">
-    <meta property="og:title" content="StreamHaven">
-    <meta property="og:description" content="StreamHaven - Watch the latest movies, popular TV shows, and exclusive content for free. Stream anytime, anywhere with no subscriptions or hidden fees.">
-    <meta property="og:image" content="https://streamhaven.netlify.app/static/media/StreamHaven.ef15eb93469ff0b77a94.png">
-    <meta property="og:url" content="https://streamhaven.netlify.app/browse">
-    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://streamhaven.netlify.app/browse" />
+    <meta property="og:title" content="StreamHaven" />
+    <meta
+      property="og:description"
+      content="StreamHaven - Watch the latest movies, popular TV shows, and exclusive content for free. Stream anytime, anywhere with no subscriptions or hidden fees."
+    />
+    <meta
+      property="og:image"
+      content="https://streamhaven.netlify.app/static/media/StreamHaven.ef15eb93469ff0b77a94.png"
+    />
+    <meta property="og:url" content="https://streamhaven.netlify.app/browse" />
+    <meta property="og:type" content="website" />
 
-    <meta name="twitter:card" content="https://streamhaven.netlify.app/static/media/StreamHaven.ef15eb93469ff0b77a94.png">
-    <meta name="twitter:title" content="StreamHaven">
-    <meta name="twitter:description" content="StreamHaven - Watch the latest movies, popular TV shows, and exclusive content for free. Stream anytime, anywhere with no subscriptions or hidden fees.">
-    <meta name="twitter:image" content="https://streamhaven.netlify.app/static/media/StreamHaven.ef15eb93469ff0b77a94.png">
+    <meta
+      name="twitter:card"
+      content="https://streamhaven.netlify.app/static/media/StreamHaven.ef15eb93469ff0b77a94.png"
+    />
+    <meta name="twitter:title" content="StreamHaven" />
+    <meta
+      name="twitter:description"
+      content="StreamHaven - Watch the latest movies, popular TV shows, and exclusive content for free. Stream anytime, anywhere with no subscriptions or hidden fees."
+    />
+    <meta
+      name="twitter:image"
+      content="https://streamhaven.netlify.app/static/media/StreamHaven.ef15eb93469ff0b77a94.png"
+    />
     <title>StreamHaven</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script>
-      if('serviceWorker' in navigator){
-        navigator.serviceWorker.register('./sw.js').then((res) => {
-          console.warn(res);
-        }).catch(err=> console.error(err))
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("./sw.js")
+          .then((res) => {
+            console.warn(res);
+          })
+          .catch((err) => console.error(err));
       }
     </script>
   </body>

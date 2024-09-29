@@ -173,9 +173,11 @@ const PageContent = ({ pageType }) => {
         </div>
       </div>
 
-      <div className='absolute z-20'>
-        <Details />
-      </div>
+      {details.detail && (
+        <div className='absolute z-20'>
+          <Details />
+        </div>
+      )}
 
       <div>
         {type && videoId && <VideoPlayer type={type} videoId={videoId} />}

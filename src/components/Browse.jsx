@@ -23,11 +23,11 @@ const Browse = () => {
     dispatch(clearSearchKeyword());
     dispatch(removeGenre());
     dispatch(removeMovieFromList());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (searchData.keywords.length >= 2) navigate("/search");
-  }, [searchData.keywords]);
+  }, [searchData.keywords, navigate]);
 
   useEffect(() => {
     if (details?.detail) {

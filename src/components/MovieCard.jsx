@@ -5,6 +5,11 @@ import { addDetail } from "../utils/detailsSlice";
 
 const MovieCard = ({ title, posterPath, detail, bottom }) => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleImageLoad = () => {
+    setIsLoading(false);
+  };
   const [watchList, setWatchList] = useState(
     JSON.parse(localStorage.getItem("movie")) || []
   );
@@ -54,7 +59,6 @@ const MovieCard = ({ title, posterPath, detail, bottom }) => {
     } else detail.title ? getMovieDetail(detail?.id) : getTvDetail(detail?.id);
   };
 
-  
   useEffect(() => {
     renderCard();
   }, [watchList]);
@@ -64,23 +68,32 @@ const MovieCard = ({ title, posterPath, detail, bottom }) => {
       <div
         className={`${bottom ? "w-full" : "w-36 sm:w-44"} ${
           bottom ? "pb-4 pr-2" : "pr-4"
-        }`}
+        } relative flex flex-col items-center`}
         onClick={handleCardClick}
       >
-        <img
-          alt={`${detail.name || detail.title}`}
-          className='p-3 rounded-lg w-[136px] h-[190px] object-contain'
-          style={{
-            background: "rgba(255,255,255,.05)",
-            boxShadow: "0 0 10px rgba(0,0,0,0.25)",
-            backdropFilter: "blur(10px)",
-            width: '100%',
-            height: '80%',
-          }}
-          src={"https://wsrv.nl/?url=" +
-          POSTER_PATH + posterPath +
-            "&w=127&h=190&output=webp"}
-        />
+        <div className="relative w-full h-[80%]">
+          {isLoading && (
+            <div className='absolute inset-0 bg-gray-300 animate-pulse rounded-lg'></div>
+          )}
+          <img
+            alt={`${detail.name || detail.title}`}
+            className={`p-3 rounded-lg w-full h-full object-contain ${
+              isLoading ? "hidden" : ""
+            }`}
+            style={{
+              background: "rgba(255,255,255,.05)",
+              boxShadow: "0 0 10px rgba(0,0,0,0.25)",
+              backdropFilter: "blur(10px)",
+            }}
+            src={
+              "https://wsrv.nl/?url=" +
+              POSTER_PATH +
+              posterPath +
+              "&w=127&h=190&output=webp"
+            }
+            onLoad={handleImageLoad}
+          />
+        </div>
         {watchList.findIndex((item) => item?.id === detail?.id) > -1 ? (
           <button
             className='bg-white text-black text-center rounded-md w-full px-3 py-2'
