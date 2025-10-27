@@ -8,14 +8,23 @@ const VideoPlayer = ({ type, videoId }) => {
   const [showErrorScreen, setShowErrorScreen] = useState(false);
   const [player, setPlayer] = useState("");
   const superEmbedData = type === "movie" ? videoId : videoId.split("/");
-  console.log(videoId)
   const playersArr = [
+    `https://vidbinge.dev/embed/${type}/${videoId}`,
+    `https://embed.su/embed/${type}/${videoId}?`,
+    `https://www.flicky.host/embed/${type}/?id=${videoId}`,
+    `https://vidlink.pro/${type}/${videoId}`,
+    `https://vidsrc.cc/v2/embed/${type}/${videoId}`,
     `https://vidsrc.pro/embed/${type}/${videoId}?&autoplay=0&theme=E50914`,
     `https://vidsrc.to/embed/${type}/${videoId}`,
     `https://vidsrc.in/embed/${type}/${videoId}`,
     `https://vidsrc.pm/embed/${type}/${videoId}`,
     `https://vidsrc.xyz/embed/${type}/${videoId}`,
-    `https://player.smashy.stream/${type}/${type === 'movie' ? superEmbedData : `${superEmbedData[0]}?s=${superEmbedData[1]}&e=${superEmbedData[1]}`}`,
+    `https://vidsrc.icu/embed/${type}/${videoId}`,
+    `https://player.smashy.stream/${type}/${
+      type === "movie"
+        ? superEmbedData
+        : `${superEmbedData[0]}?s=${superEmbedData[1]}&e=${superEmbedData[1]}`
+    }`,
     `https://player.autoembed.cc/embed/${type}/${videoId}`,
   ];
   // `https://www.2embed.cc/embed${type === 'movie' ? '' : 'tv'}/${type === 'movie' ? superEmbedData : `${superEmbedData[0]}&s=${superEmbedData[1]}&e=${superEmbedData[1]}`}`, Cors Issue
@@ -53,6 +62,23 @@ const VideoPlayer = ({ type, videoId }) => {
     fetchPlayer();
   }, []);
 
+  // useEffect(() => {
+  //   const storeProgress = () => {
+  //     const progress = localStorage.getItem("embed::progress");
+  //     if (progress) {
+  //       localStorage.setItem("progress", progress);
+  //     }
+  //   };
+
+  //   // Store progress on mount
+  //   storeProgress();
+
+  //   // Store progress on unmount
+  //   return () => {
+  //     storeProgress();
+  //   };
+  // }, []);
+
   const handleCloseVideoPlayer = () => {
     setShowErrorScreen(false);
     dispatch(removeVideoFromStream());
@@ -86,9 +112,9 @@ const VideoPlayer = ({ type, videoId }) => {
                 id='player_iframe'
                 src={player}
                 allowFullScreen
-                  style={{ height: "100vh", width: "100vw" }}
-                  referrerPolicy="origin"
-                ></iframe>
+                style={{ height: "100vh", width: "100vw" }}
+                referrerPolicy='origin'
+              ></iframe>
               {/* <iframe
                 src='https://vidsrc.pro/embed/anilist/20954/1?audio=dub&autoplay=0&theme=F52E8E"' // For anime
                 title='Movie'

@@ -51,7 +51,7 @@ const PageContent = ({ pageType }) => {
   const fetchMovieList = async () => {
     try {
       const data = await fetch(
-        `https://api.themoviedb.org/3/discover/${pageType}?include_adult=true&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc${
+        `https://api.themoviedb.org/3/discover/${pageType}?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc${
           genre > 0 ? `&with_genres=${genre}` : ""
         } `,
         API_OPTIONS

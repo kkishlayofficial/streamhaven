@@ -68,7 +68,7 @@ const MovieCard = ({ title, posterPath, detail, bottom }) => {
       <div
         className={`${bottom ? "w-full" : "w-36 sm:w-44"} ${
           bottom ? "pb-4 pr-2" : "pr-4"
-        } relative flex flex-col items-center`}
+        } relative flex flex-col items-center card`}
         onClick={handleCardClick}
       >
         <div className="relative w-full h-[80%]">

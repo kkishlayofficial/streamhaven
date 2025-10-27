@@ -20,4 +20,11 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
+
+  .card{
+    cursor: pointer;
+  }
+  .card:hover{
+    filter: brightness(0.5);
+  }
 }

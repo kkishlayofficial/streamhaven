@@ -22,7 +22,7 @@ const useDataFromTmdb = () => {
   const getNowPlayingMovies = async () => {
     try {
       const data = await fetch(
-        "https://api.themoviedb.org/3/movie/now_playing?page=1&include_adult=true",
+        "https://api.themoviedb.org/3/movie/now_playing?page=1&include_adult=false",
         API_OPTIONS
       );
 
@@ -36,7 +36,7 @@ const useDataFromTmdb = () => {
   const getPopularMovies = async () => {
     try {
       const data = await fetch(
-        "https://api.themoviedb.org/3/movie/popular?language=page=1&include_adult=true",
+        "https://api.themoviedb.org/3/movie/popular?language=page=1&include_adult=false",
         API_OPTIONS
       );
 
@@ -50,7 +50,7 @@ const useDataFromTmdb = () => {
   const getTopRatedMovies = async () => {
     try {
       const data = await fetch(
-        "https://api.themoviedb.org/3/movie/top_rated?language=page=1&include_adult=true",
+        "https://api.themoviedb.org/3/movie/top_rated?language=page=1&include_adult=false",
         API_OPTIONS
       );
 
@@ -64,7 +64,7 @@ const useDataFromTmdb = () => {
   const getOnTheAirTvShows = async () => {
     try {
       const data = await fetch(
-        "https://api.themoviedb.org/3/tv/on_the_air?language=page=1&include_adult=true",
+        "https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=1&include_adult=false",
         API_OPTIONS
       );
 
@@ -78,7 +78,7 @@ const useDataFromTmdb = () => {
   const getPopularTvShows = async () => {
     try {
       const data = await fetch(
-        "https://api.themoviedb.org/3/tv/popular?language=page=1&include_adult=true",
+        "https://api.themoviedb.org/3/tv/popular?language=en-US&page=1&include_adult=false",
         API_OPTIONS
       );
 
@@ -92,7 +92,7 @@ const useDataFromTmdb = () => {
   const getTopRatedTvShows = async () => {
     try {
       const data = await fetch(
-        "https://api.themoviedb.org/3/tv/top_rated?language=page=1&include_adult=true",
+        "https://api.themoviedb.org/3/tv/top_rated?page=1&include_adult=false",
         API_OPTIONS
       );
 

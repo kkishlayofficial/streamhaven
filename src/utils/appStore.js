@@ -14,21 +14,22 @@ import { persistReducer } from "redux-persist";
 const persistConfig = {
   key: 'root',
   version: 1,
-  storage
+  storage,
+  blacklist: ['tv', 'movies'],
 }
 const rootReducer = combineReducers({
   user: userSlice,
-  movies: moviesSlice,
-  tv: tvSlice,
   details: detailsSlice,
   trending: trendingSlice,
   video: videoSlice,
   search: searchSlice,
   allMovies: allMovieSlice,
+  movies: moviesSlice,
+  tv: tvSlice,
 })
 
 const appStore = configureStore({
-  reducer: persistReducer(persistConfig, rootReducer)
+  reducer: persistReducer(persistConfig, rootReducer),
 });
 
 export default appStore;
