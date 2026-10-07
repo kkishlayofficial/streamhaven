@@ -36,7 +36,7 @@ const Search = () => {
   const fetchSearchData = async (signal, page) => {
     try {
       const data = await fetch(
-        `https://api.themoviedb.org/3/search/multi?query=${searchData.keywords}&include_adult=false&language=en-US&page=${page}`,
+        `https://api.tmdb.org/3/search/multi?query=${searchData.keywords}&include_adult=false&language=en-US&page=${page}`,
         { ...API_OPTIONS, signal }
       );
 

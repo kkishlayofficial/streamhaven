@@ -16,7 +16,7 @@ const MovieCard = ({ title, posterPath, detail, bottom }) => {
   const getMovieDetail = async (id) => {
     try {
       const data = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
+        `https://api.tmdb.org/3/movie/${id}?language=en-US`,
         API_OPTIONS
       );
       const movieDetail = await data.json();
@@ -29,7 +29,7 @@ const MovieCard = ({ title, posterPath, detail, bottom }) => {
   const getTvDetail = async (id) => {
     try {
       const data = await fetch(
-        `https://api.themoviedb.org/3/tv/${id}?language=en-US`,
+        `https://api.tmdb.org/3/tv/${id}?language=en-US`,
         API_OPTIONS
       );
       const tvDetail = await data.json();

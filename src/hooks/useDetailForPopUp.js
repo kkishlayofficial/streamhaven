@@ -4,13 +4,13 @@ import { API_OPTIONS } from "../utils/constants";
 const useDetailForPopup = (type, detail, setContentRecommendation) => {
   const getMovieRecommendation = async (id) => {
     const data = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}/recommendations?language=en-US&page=1`,
+      `https://api.tmdb.org/3/movie/${id}/recommendations?language=en-US&page=1`,
       API_OPTIONS
     );
     const movieRecommendation = await data.json();
     if (movieRecommendation.results.length < 1) {
       const data = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`,
+        `https://api.tmdb.org/3/movie/${id}/similar?language=en-US&page=1`,
         API_OPTIONS
       );
       const movieRecommendation = await data.json();
@@ -21,13 +21,13 @@ const useDetailForPopup = (type, detail, setContentRecommendation) => {
 
   const getTvRecommendation = async (id) => {
     const data = await fetch(
-      `https://api.themoviedb.org/3/tv/${id}/recommendations?language=en-US&page=1`,
+      `https://api.tmdb.org/3/tv/${id}/recommendations?language=en-US&page=1`,
       API_OPTIONS
     );
     const tvRecommendation = await data.json();
     if (tvRecommendation.results.length < 1) {
       const data = await fetch(
-        `https://api.themoviedb.org/3/tv/${id}/similar?language=en-US&page=1`,
+        `https://api.tmdb.org/3/tv/${id}/similar?language=en-US&page=1`,
         API_OPTIONS
       );
       const tvRecommendation = await data.json();

@@ -36,7 +36,7 @@ const Details = () => {
   const renderImages = async () => {
     try {
       const data = await fetch(
-        `https://api.themoviedb.org/3/${type}/${detail?.id}/images`,
+        `https://api.tmdb.org/3/${type}/${detail?.id}/images`,
         API_OPTIONS
       );
       const response = await data.json();
@@ -52,12 +52,20 @@ const Details = () => {
   };
 
   const handlePlay = () => {
-    dispatch(addVideoToStream(videoToPlay));
+    dispatch(
+      addVideoToStream({
+        ...videoToPlay,
+        title: detail?.name ?? detail?.title,
+        poster: detail?.backdrop_path
+          ? BACKDROP_URL + detail.backdrop_path
+          : undefined,
+      })
+    );
   };
 
   const fetchEpisodesBySeason = async (id, seasonNo) => {
     const data = await fetch(
-      `https://api.themoviedb.org/3/tv/${id}/season/${seasonNo}?language=en-US`,
+      `https://api.tmdb.org/3/tv/${id}/season/${seasonNo}?language=en-US`,
       API_OPTIONS
     );
     const list = await data.json();

@@ -4,7 +4,7 @@ import { addDetail } from "../utils/detailsSlice";
 import { addVideoToStream } from "../utils/videoSlice";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import InfoIcon from "@mui/icons-material/Info";
-import { LOGO_PATH, API_OPTIONS } from "../utils/constants";
+import { LOGO_PATH, API_OPTIONS, BACKDROP_URL } from "../utils/constants";
 
 const VideoTitle = ({ title, overview, movie }) => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const VideoTitle = ({ title, overview, movie }) => {
   const renderImages = async () => {
     try {
       const data = await fetch(
-        `https://api.themoviedb.org/3/movie/${movie?.id}/images`,
+        `https://api.tmdb.org/3/movie/${movie?.id}/images`,
         API_OPTIONS
       );
       const response = await data.json();
@@ -31,7 +31,11 @@ const VideoTitle = ({ title, overview, movie }) => {
     dispatch(
       addVideoToStream({
         type: movie.title ? "movie" : "tv",
-        videoId: `${movie.id}`,
+        videoId: movie.title ? `${movie.id}` : `${movie.id}/1/1`,
+        title: movie.title ?? movie.name,
+        poster: movie.backdrop_path
+          ? BACKDROP_URL + movie.backdrop_path
+          : undefined,
       })
     );
   };

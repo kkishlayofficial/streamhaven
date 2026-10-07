@@ -9,7 +9,7 @@ const useTrailerFromYoutube = (videoId) => {
   const getMovieVideo = async () => {
     try {
       const data = await fetch(
-        `https://api.themoviedb.org/3/movie/${videoId}/videos`,
+        `https://api.tmdb.org/3/movie/${videoId}/videos`,
         API_OPTIONS
       );
       const videoData = await data.json();
